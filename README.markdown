@@ -2,7 +2,7 @@ RESTful-CodeIgniter
 ===================
 AUTHOR: ZHENJiNG LiANG (liangzhenjing_N_O_S_P_A_M@gmail.com)
 
-LINK:   http://liang.eu/web-dev/php/restful-style-url-in-codeigniter
+LINK:   <http://liang.eu/web-dev/php/restful-style-url-in-codeigniter>
 
 Introduction
 ============
