@@ -11,8 +11,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 // NOTE: 
-// This Library rewrites :id as ([^/]+) to match non-numeric id field,
-// Added :uuid to match UUID (aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee)
+// This Library added two macros:
+// :id as [^/]+ in order to match non-numeric id field,
+// :uuid to match UUID (aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee)
+//
 // :any and :num remain the same
 // See code below for details
 // You can change at will
@@ -28,11 +30,11 @@ function map_resources()
     static $routes = array();
 
     $arg_num = func_num_args();
-    if($arg_num == 0)
+    if(0 == $arg_num)
     {
         return $routes;
     }
-    elseif($arg_num == 1)
+    elseif(1 == $arg_num)
     {
         // map_resources($controller_name)   --> return all routes
         $controller = func_get_arg(0);
@@ -47,7 +49,19 @@ function map_resources()
         $routes['PUT' ]["{$controller}/(:id)"]      = "{$controller}/update/$1";
         $routes['DELETE']["{$controller}/(:id)"]    = "{$controller}/delete/$1";
     }
-    elseif($arg_num == 3)
+    elseif(2 == $arg_num)
+    {
+        // Custom url routing
+        $args    = func_get_args();
+        $pattern = $args[0];
+        $replace = $args[1];
+
+        $routes['GET'][$pattern]    = $replace;
+        $routes['POST'][$pattern]   = $replace;
+        $routes['PUT'][$pattern]    = $replace;
+        $routes['POST'][$pattern]   = $replace;
+    }
+    elseif(3 == $arg_num)
     {
         // Custom url routing
         $args    = func_get_args();

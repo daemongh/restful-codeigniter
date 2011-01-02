@@ -68,33 +68,38 @@ All you need to do is drop MY_Router.php into you appliation's libraries directo
 Configuration:
 --------------
 
-Open application/routers.php, add this line in the bottom, and you are done!
+Open application/routers.php, add this line at the bottom, and you are done!
 
     map_resources('users');
 
 Now you can test these urls by curl:
 
-    $ curl http://192.168.1.99/restful-codeigniter/users//users
-    $ curl http://192.168.1.99/restful-codeigniter/users//users/new
-    $ curl http://192.168.1.99/restful-codeigniter/users//users/9999
-    $ curl http://192.168.1.99/restful-codeigniter/users//users/9999/edit
-    $ curl -X PUT http://192.168.1.99/restful-codeigniter/users//users/9999
-    $ curl -X POST http://192.168.1.99/restful-codeigniter/users//users/9999
-    $ curl -X DELETE http://192.168.1.99/restful-codeigniter/users//users/9999
+    $ curl http://localhost/restful-codeigniter/users
+    $ curl http://localhost/restful-codeigniter/users/new
+    $ curl http://localhost/restful-codeigniter/users/9999
+    $ curl http://localhost/restful-codeigniter/users/9999/edit
+    $ curl -X PUT http://localhost/restful-codeigniter/users/9999
+    $ curl -X POST http://localhost/restful-codeigniter/users/9999
+    $ curl -X DELETE http://localhost/restful-codeigniter/users/9999
 
 I need more...
 ==============
 You can register a custom handler in routes.php:
+
+    //syntax:
+    // map_resources($request_method, $pattern, $replace)
+
+    // examples:
 
     // custom action handles GET request
     map_resources('GET', 'users/(:id)/custom_action', 'users/custom_action/$1'); 
     
     // some other custom action mappings...
     // custom action handles PUT request
-    //map_resources('PUT', 'users/(:id)/custom_action', 'sync_sessions/custom_action/$1');
+    map_resources('PUT', 'users/(:id)/custom_action', 'sync_sessions/custom_action/$1');
 
     // custom action handles all requests (GET, POST, PUT, DELETE)
-    //map_resources('users/(:id)/custom_action', 'sync_sessions/custom_action/$1');
+    map_resources('users/(:id)/custom_action', 'sync_sessions/custom_action/$1');
 
 LICENSE
 =======
