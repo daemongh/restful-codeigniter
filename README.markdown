@@ -84,7 +84,7 @@ Now you can test these urls by curl:
 
 I need more...
 ==============
-You can register a custom handler in routes.php:
+You can register additional custom handlers in routes.php:
 
     //syntax:
     // map_resources($request_method, $pattern, $replace)
